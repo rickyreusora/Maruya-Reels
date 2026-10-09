@@ -1,0 +1,20 @@
+RewriteEngine On
+RewriteBase /
+
+# Redirect to HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Ignore physical files and directories
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Clean URL Routing
+RewriteRule ^drama/([^/]+)/([^/]+)/?$ drama.php?provider=$1&id=$2 [L,QSA]
+RewriteRule ^watch/([^/]+)/([^/]+)/?$ watch.php?provider=$1&id=$2 [L,QSA]
+RewriteRule ^search/?$ search.php [L,QSA]
+RewriteRule ^my-list/?$ my-list.php [L,QSA]
+RewriteRule ^history/?$ history.php [L,QSA]
+RewriteRule ^about/?$ about.php [L,QSA]
+RewriteRule ^privacy/?$ privacy.php [L,QSA]
+RewriteRule ^terms/?$ terms.php [L,QSA]
